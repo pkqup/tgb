@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360" user-scalable="no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="stylesheet" href="../../css/common.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/queryInfo_index.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/mui.min.css" type="text/css"/>
+    <script type="text/javascript" src="../../common/libs/jquery.min.js"></script>
+    <script src="../../common/libs/swiper.min.js"></script>
+    <script type="text/javascript" src="../../js/policy/message_enquiry.js"></script>
+    <script type="text/javascript" src="../../js/its.configuration.js"></script>
+    <script type="text/javascript" src="../../common/commonFunc.js"></script>
+    <script type="text/javascript" src="../../common/libs/mui.min.js"></script>
+    <script type=""></script>
+    <title>消息查询</title>
+    <style>
+        html, body {
+            position: relative;
+            height: 100%;
+        }
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color:#000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .same{text-align: center;margin-top: 8px;}
+        .same input{
+            padding-left:8px;
+        }
+       #pullrefresh  .mui-pull-bottom-pocket, .mui-pull-top-pocket{
+            height:60px;
+        }
+        #pullrefresh   .mui-pull{
+            bottom:-4px;
+        }
+        .list{
+            margin-top:60px;
+        }
+    </style>
+<body>
+<div>
+    <div class="header">
+        <img id="goBack" class="goBack" src="../../img/goBack.png"/>
+        <b id="tittle" class="tittle">消息查询</b>
+    </div>
+    <div id="pullrefresh" class="mui-content mui-scroll-wrapper   policy_set">
+        <div class="mui-scroll">
+            <!--数据列表-->
+            <div class="list">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#goBack").on('click',function(){
+        window.location.href="../../index.html"
+    })
+</script>
+</body>
+</html>

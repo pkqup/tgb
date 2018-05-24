@@ -1,0 +1,145 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.castelits.tgb"
+        minSdkVersion 19
+        targetSdkVersion 21
+        multiDexEnabled true
+        versionCode 1
+        versionName "1.0"
+        flavorDimensions "versionCode"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'tgb'
+            keyPassword 'tgb123'
+            storeFile file('../tgb.jks')
+            storePassword 'tgb123'
+        }
+    }
+
+    buildTypes {
+        release {
+            //是否启用代码混淆
+            minifyEnabled false
+            //代码混淆使用的配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //签名
+            signingConfig signingConfigs.release
+            //移除无用的Resource
+            shrinkResources false
+            //资源文件对齐
+            zipAlignEnabled true
+            ndk {
+                abiFilters "armeabi", "armeabi-v7a", "x86"
+            }
+            //多渠道打包配置
+            applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+                    outputFileName = "tgb_${variant.productFlavors[0].name}_${defaultConfig.versionCode}_${new Date().format("yyyyMMddHHmm")}.apk"
+                }
+            }
+        }
+        debug {
+            minifyEnabled false
+            debuggable true
+            signingConfig signingConfigs.release
+            ndk {
+                abiFilters "armeabi", "armeabi-v7a", "x86"
+            }
+        }
+    }
+
+
+    productFlavors {
+        TGB {
+            manifestPlaceholders = [TGB_CHANNEL: "1.1"]
+            buildConfigField "String", "CHANNEL", "\"1.1\""
+        }
+        C360 {
+            manifestPlaceholders = [TGB_CHANNEL: "2.1"]
+            buildConfigField "String", "CHANNEL", "\"2.1\""
+        }
+        BaiDu {
+            manifestPlaceholders = [TGB_CHANNEL: "3.1"]
+            buildConfigField "String", "CHANNEL", "\"3.1\""
+        }
+        C91 {
+            manifestPlaceholders = [TGB_CHANNEL: "3.2"]
+            buildConfigField "String", "CHANNEL", "\"3.2\""
+        }
+        Android {
+            manifestPlaceholders = [TGB_CHANNEL: "3.3"]
+            buildConfigField "String", "CHANNEL", "\"3.3\""
+        }
+        YingYongBao {
+            manifestPlaceholders = [TGB_CHANNEL: "4.1"]
+            buildConfigField "String", "CHANNEL", "\"4.1\""
+        }
+        WanDouJia {
+            manifestPlaceholders = [TGB_CHANNEL: "5.1"]
+            buildConfigField "String", "CHANNEL", "\"5.1\""
+        }
+        PPZhuShou {
+            manifestPlaceholders = [TGB_CHANNEL: "6.1"]
+            buildConfigField "String", "CHANNEL", "\"6.1\""
+        }
+        XiaoMi {
+            manifestPlaceholders = [TGB_CHANNEL: "7.1"]
+            buildConfigField "String", "CHANNEL", "\"7.1\""
+        }
+        HuaWei {
+            manifestPlaceholders = [TGB_CHANNEL: "8.1"]
+            buildConfigField "String", "CHANNEL", "\"8.1\""
+        }
+        ViVo {
+            manifestPlaceholders = [TGB_CHANNEL: "9.1"]
+            buildConfigField "String", "CHANNEL", "\"9.1\""
+        }
+    }
+
+
+
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/ASL2.0'
+        pickFirst 'AndroidManifest.xml'
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+        preDexLibraries = false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    //dex分包（解决方法数超过65535编译失败问题）
+    compile 'com.android.support:multidex:1.0.3'
+
+    //日志打印
+    compile 'com.github.zhaokaiqiang.klog:library:1.6.0'
+
+    //依赖注入
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    //状态栏变色
+    compile 'com.jaeger.statusbarutil:library:1.4.0'
+}

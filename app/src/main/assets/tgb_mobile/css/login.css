@@ -1,0 +1,114 @@
+.center{
+    width:100%;
+    padding-top:30px;
+    position: absolute;
+}
+.center #register{
+    width:90%;
+    height:42px;
+    color:#ffffff;
+    background-color:#1469d3;
+   line-height: 42px;
+    text-align: center;
+    border-radius:30px;
+    margin-top:15px;
+    font-size:16px;
+    margin-left:5%;
+}
+.center #login{
+    width:90%;
+    height:42px;
+    background-color:#1469d3;color:#ffffff;
+    line-height: 42px;
+    text-align: center;
+    border-radius:30px;
+    font-size:16px;
+    margin-left:5%;
+}
+.center .forget_password span{
+    float:right;
+    margin-right:-47%;
+    color: cornflowerblue;
+}
+
+.clearfix::after {
+    content: ".";
+    clear: both;
+    display: block;
+    overflow: hidden;
+    font-size: 0;
+    height: 0;
+}
+#forgePwd{
+    padding-left:30px;
+    width: 80px;
+}
+
+ .clearfix {
+    zoom: 1;
+}
+.phoneBar{
+    margin-left: -15px;
+}
+
+.small_pic{
+    width:24px;
+    height:24px;
+}
+
+.small_pic_phone{
+    position:absolute;
+    top: 10px;
+    left: 25px;
+}
+.small_pic_password{
+    position:absolute;
+    top: 10px;
+    left: 25px;
+}
+.login_common{
+    height:42px;
+    position:relative;
+}
+.small_pic_code{
+    position:absolute;
+    top: 10px;
+    left: 25px;
+}
+#forgePwd  span{
+    font-size:12px;
+    color:rgb(25,120,237);
+}
+
+.center .btn_space{
+    margin-top:40px;
+}
+
+.common .logo_pic{
+    width:100%;
+    height:140px;
+}
+
+.common .normal_line_con{
+    width:5px;
+    height:25px;
+    position:absolute;
+    top:10px;
+    left:55px;
+}
+
+.common .normal_line_spe{
+    width:5px;
+    height:25px;
+    position:absolute;
+    top: 10px;
+    left: 55px;
+}
+.verifyCodeBox{
+    position: absolute;top: 4px;right:25px;
+    width: 80px;height: 36px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+input::-ms-input-placeholder{padding-left:0px}
+input::-webkit-input-placeholder{padding-left:0px;}

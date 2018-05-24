@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360" user-scalable="no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="stylesheet" href="css/common.css" type="text/css"/>
+    <link rel="stylesheet" href="css/login.css" type="text/css"/>
+    <script type="text/javascript" src="common/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="js/its.configuration.js"></script>
+    <script type="text/javascript" src="common/verifyCode.js"></script>
+    <script type="text/javascript" src="common/commonFunc.js"></script>
+    <title>登录</title>
+
+</head>
+<body>
+<div class="common" style="  background-color:#fff">
+<div class="header">
+    <b id="tittle" class="tittle">登录</b>
+</div>
+    <div class="logo_pic">
+        <img src="img/logo_banner.png" class="logo_pic"/>
+    </div>
+    <div class="center" >
+            <div class="login_common">
+                <input type="text" id="phone" style="width: 90%;height:42px;padding-left:58px;margin-left: 5%;"  placeholder="请输入手机号"/>
+                <img src="img/normal_phone.png" class="small_pic  small_pic_phone"/>
+                <img  src="img/normal_line.png" class="normal_line_con"/>
+            </div>
+            <div class="same passwordBar login_common ">
+                <input type="password" id="password" style="width: 90%;height:42px;padding-left:58px;margin-left: 5%;"  placeholder="请输入密码"/>
+                <img src="img/normal_pass.png" class="small_pic  small_pic_password"/>
+                <img  src="img/normal_line.png" class="normal_line_con"/>
+            </div>
+
+            <div class="same" style="position: relative;" >
+                <input  type="text" id="login_verification_code" class="verification_code" style="width:65%;height:42px;padding-left:58px; margin-left:5%" placeholder="请输入验证码"/>
+                <img src="img/normal_code.png" class="small_pic  small_pic_code"/>
+                <img  src="img/normal_line.png" class="normal_line_spe"/>
+                <div  id="changeImg" class="verifyCodeBox">
+                    <canvas class="show-captcha" id="canvas" width="90" height="40"></canvas>
+                </div>
+            </div>
+        <div id="forgePwd" class="same clearfix">
+            <span>忘记密码</span>
+        </div>
+            <div class=" btn_space clearfix">
+                <div id="login">登录</div>
+                <div id="register">注册</div>
+
+            </div>
+    </div>
+</div>
+    <script src="common/libs/jquery.min.js"></script>
+    <script>
+        var storage = window.localStorage;
+        if(storage){
+            $("#phone").val(storage["loginphone"]);
+            $("#password").val(storage["password"]);
+        }
+        $('#forgePwd').on('click',function(){
+            localStorage.setItem('userType',5);
+            location.href = 'html/accountManage/userMsg.html'
+        });
+        $('#phone').change(function () {
+            var phoneNum = $.trim($(this).val());
+            var mPattern = /^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\d{8}$/;
+            if(phoneNum!=''){
+                if(!mPattern.test(phoneNum)){
+                    commonObj.alertMsg("电话号码格式不正确!")
+                    return false;
+                };
+            }
+        });
+        $('#login').on('click',function(){
+           var phoneText = $.trim($('#phone').val());
+           var passwordText = $.trim($('#password').val());
+           var login_verificationText=$.trim($("#login_verification_code").val());
+           var code=localStorage.getItem('code');
+           if(phoneText==''){
+               commonObj.alertMsg("手机号码不能为空!");
+               return false;
+           }
+           if(passwordText==''){
+               commonObj.alertMsg("密码不能为空!");
+               return false;
+           }
+           if(login_verificationText==''){
+               commonObj.alertMsg('验证码不能为空！')
+               return false;
+           }
+           else if(code.toLowerCase()!=login_verificationText.toLowerCase()){
+               commonObj.alertMsg('验证码错误！');
+               return false;
+           }
+            commonObj.openLoading();
+            var userData = {"phone":phoneText,"password":passwordText};
+            $.ajax({
+                url:its.configuration.serviceUrl + "/user/theLogin",
+                data:userData,
+                type:"post",
+                success:function(res){
+                    commonObj.closeLoading();
+                    if(res.success){
+                        var userType = res.object.type?res.object.type:1;
+                        localStorage.setItem('userType',userType);
+                        localStorage.setItem('userInfo',JSON.stringify(res.object));
+                        localStorage.phone = res.object.phone;
+                        /*将数据存储到localstorage里面*/
+                        var storage = window.localStorage;
+                         //存储到loaclStage
+                        storage["loginphone"] = $("#phone").val();
+                        storage["password"] = $("#password").val();
+                        location.href = "index.html";
+                    }else{
+                        commonObj.alertMsg(res.object);
+                    }
+                },
+                error:function(e){
+                    commonObj.closeLoading();
+                    commonObj.alertMsg("网络有误!");
+                }
+            });
+        });
+        $('#register').on('click',function(){
+            location.href = "register.html";
+        })
+    </script>
+</body>
+</html>

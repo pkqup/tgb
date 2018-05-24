@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360" user-scalable="no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="stylesheet" href="../../css/common.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/queryInfo_index.css" type="text/css"/>
+    <script type="text/javascript" src="../../common/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/its.configuration.js"></script>
+    <script type="text/javascript" src="../../common/verifyCode.js"></script>
+    <script type="text/javascript" src="../../common/commonFunc.js"></script>
+    <title>物流链查询</title>
+</head>
+<style>
+    input{
+        margin-left:5%;
+    }
+</style>
+<body>
+<div class="common">
+  <div class="header">
+    <img id="goBack" class="goBack" src="../../img/goBack.png"/>
+    <b id="tittle" class="tittle">物流链查询</b>
+  </div>
+  <div class="search_inputDiv" style="height:320px">
+
+    <div>
+        <input  type="text"  placeholder="请输入报关单号"  id="logistics_entry_queryCode"/>
+
+        </div>
+        <div class="same">
+            <input  type="text"  placeholder="请输入提单号" id="logistics_man_queryCode"/>
+        </div>
+        <div class="same">
+            <input  type="text"  placeholder="请输入箱号" id="logistics_box_queryCode"/>
+        </div>
+        <div class="same" >
+            <input  type="text"  placeholder="请输入验证码"id="logistics_verification_code" class="verification_code"/>
+            <div  id="changeImg" class="verifyCodeDiv" style="top:230px">
+                <canvas class="show-captcha" id="canvas" width="90" height="40"></canvas>
+            </div>
+        </div>
+      <p class="same"  style="color:red; margin-left:5%; font-size:12px;">友情提示：请查询以申报时间为起始日期3个月内的报关单号!</p>
+      <div id="select" class="queryBn">查询</div>
+  </div>
+    <div  id="Logistics_show" class="box_pos">
+        <!--<img src="../../img/border_name.png" class="box_show"/>-->
+           <p  style="text-align:center;padding-top:15px;padding-bottom:10px">物流信息：</p>
+            <p id="logistics_info" class="logistics_info"></p>
+
+    </div>
+  </div>
+</div>
+<script>
+    $("#goBack").on('click',function(){
+        window.location.href="../../index.html"
+    })
+    $("#select").on('click',function(){
+        $('.logistics_info').empty();
+        var logistics_entry_queryInfoText=$.trim($("#logistics_entry_queryCode").val());
+        var logistics_man_queryInfoText=$.trim($("#logistics_man_queryCode").val());
+        var logistics_box_queryInfoText=$.trim($("#logistics_box_queryCode").val());
+        var logistics_verification_queryInfoText=$.trim($("#logistics_verification_code").val());
+        var code=localStorage.getItem('code');
+        if(logistics_entry_queryInfoText==''&&logistics_man_queryInfoText==''&&logistics_box_queryInfoText==''){
+            commonObj.alertMsg("三个里面必须填一个");
+            return false;
+        }
+        else if(logistics_verification_queryInfoText==''){
+            commonObj.alertMsg('验证码不能为空！');
+            return false;
+        }
+        else if(code.toLowerCase()!=logistics_verification_queryInfoText.toLowerCase()){
+            commonObj.alertMsg('验证码错误！');
+            return false;
+        }
+        commonObj.openLoading();
+        $.ajax({
+            url:its.configuration.serviceUrl+'/logisticsInfo/queryById?entryId='+logistics_entry_queryInfoText+'&'+'billNo='+ logistics_man_queryInfoText+'&'+'containerId='+ logistics_box_queryInfoText,
+            type:'get',
+            success:function(res){
+                commonObj.closeLoading();
+                if(res.success){
+                       for(var i=0;i<res.object.length;i++){
+                        var v='<p style="padding-left:15px;padding-bottom:15px;">'+res.object[i].logisticsInfo+'</p>';
+                        $('.logistics_info').append(v);
+
+                    }
+                    var code = verfiCode.verify();
+                    localStorage.setItem('code',code );
+                    $('#logistics_verification_code').val('');
+
+                }
+                else{
+                    $('#Logistics_show').css('display','none');
+                    var code = verfiCode.verify();
+                    localStorage.setItem('code',code );
+                    $('#logistics_verification_code').val('');
+                    commonObj.alertMsg('请填写正确的报关单号或提单号或箱号!');
+                }
+//                }
+            },
+            error:function(e){
+                commonObj.closeLoading();
+                $('#Logistics_show').css('display','none');
+                commonObj.alertMsg('网络错误！');
+            }
+        })
+
+    })
+</script>
+</body>
+</html>

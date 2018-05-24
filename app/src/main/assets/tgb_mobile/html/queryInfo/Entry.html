@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360" user-scalable="no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="stylesheet" href="../../css/common.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/queryInfo_index.css" type="text/css"/>
+    <script type="text/javascript" src="../../common/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/its.configuration.js"></script>
+    <script type="text/javascript" src="../../common/verifyCode.js"></script>
+    <script type="text/javascript" src="../../common/commonFunc.js"></script>
+    <title>报关单号状态查询</title>
+</head>
+<style>
+    input{
+        margin-left:5%;
+    }
+</style>
+<body>
+<div class="common">
+  <div class="header">
+    <img id="goBack" class="goBack " src="../../img/goBack.png"/>
+    <b id="tittle" class="tittle">报关单状态查询</b>
+ </div>
+<div>
+    <div class="search_inputDiv">
+    <div>
+         <input  type="text"  placeholder="请输入18位报关单号"id="Declaration_queryCode"/>
+    </div>
+    <div class="same" >
+        <input  type="text"  placeholder="请输入验证码"id="Declaration_verification_code" class="verification_code"/>
+        <div  id="changeImg" class="verifyCodeDiv">
+            <canvas class="show-captcha" id="canvas" width="90" height="40"></canvas>
+        </div>
+    </div>
+        <p class="same"  style="color:red; margin-left:5%; font-size:12px;">友情提示：请查询以申报时间为起始日期3个月内的报关单号!</p>
+    <div id="select" class="queryBn">查询</div>
+    </div>
+    <div  id="Declaration_show "class="box_pos">
+        <img src="../../img/box_shadow.png" class="box_show"/>
+        <p class="status_text">
+                  <span style="color:rgb(102,102,102)" >状态:</span>
+                  <span id="entry_status" style="color:rgb(0,0,0)"></span>
+        </p>
+    </div>
+    </div>
+   </div>
+<script>
+    $(document).ready(function() {
+        $("#goBack").on('click', function () {
+            window.location.href = "../../index.html"
+        });
+
+        $("#img_code").attr('src',its.configuration.serviceUrl+"validateCode/verifyCode");
+        $("#select").on('click', function () {
+            var Declaration_queryText = $.trim($("#Declaration_queryCode").val());
+            var Declaration_verificationText=$.trim($("#Declaration_verification_code").val());
+            var reg = new RegExp("^[0-9]{18}$");
+            var code=localStorage.getItem('code');
+            if (Declaration_queryText == '') {
+                commonObj.alertMsg("报关单号不能为空!");
+                return false;
+
+            } else if (!reg.test(Declaration_queryText)) {
+                commonObj.alertMsg("报关单号只能为18位数字!");
+                return false;
+            }
+        else if(Declaration_verificationText==''){
+                commonObj.alertMsg('验证码不能为空！');
+                return false;
+            }
+        else if(code.toLowerCase()!=Declaration_verificationText.toLowerCase()){
+                commonObj.alertMsg('验证码错误！');
+                return false;
+            }
+
+            commonObj.openLoading();
+            //报关单号查询
+            $.ajax({
+                url:its.configuration.serviceUrl+ 'tentryStatus/queryByEntryId?entryId='+Declaration_queryText,
+                type: 'get',
+                //async:false,
+                success: function (res) {
+                    commonObj.closeLoading();
+                    $('#entry_status').text(res.status);
+                    var code = verfiCode.verify();
+                    localStorage.setItem('code',code );
+                    $('#Declaration_verification_code').val('');
+                },
+                error: function (e) {
+                    commonObj.closeLoading();
+                    commonObj.alertMsg('网络错误！');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

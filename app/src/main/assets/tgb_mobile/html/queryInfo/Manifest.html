@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360" user-scalable="no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="stylesheet" href="../../css/common.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/queryInfo_index.css" type="text/css"/>
+    <script type="text/javascript" src="../../common/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/its.configuration.js"></script>
+    <script type="text/javascript" src="../../common/verifyCode.js"></script>
+    <script type="text/javascript" src="../../common/commonFunc.js"></script>
+    <title>舱单状态查询</title>
+</head>
+<style>
+    input{
+        margin-left:5%;
+    }
+</style>
+<body>
+<div class="common">
+<div class="header">
+    <img id="goBack" class="goBack" src="../../img/goBack.png"/>
+    <b id="tittle" class="tittle">舱单状态查询</b>
+</div>
+<div>
+    <div class="search_inputDiv">
+        <div>
+            <input  type="text"  placeholder="请输入提单号" id="Manifest_queryCode"/>
+        </div>
+        <div class="same" >
+            <input  type="text"  placeholder="请输入验证码"id="Manifest_verification_code" class="verification_code"/>
+            <div  id="changeImg" class="verifyCodeDiv">
+                <canvas class="show-captcha" id="canvas" width="90" height="40"></canvas>
+            </div>
+        </div>
+        <p class="same"  style="color:red; margin-left:5%; font-size:12px;">友情提示：请查询以申报时间为起始日期3个月内的提单号!</p>
+    <div id="select" class="queryBn">查询</div>
+        </div>
+    <div  id="Manifest_show" class="box_pos">
+        <img src="../../img/box_shadow.png" class="box_show"/>
+        <p class="status_text">
+            <span >状态:</span>
+            <span id="manifest_status"></span>
+        </p>
+    </div>
+</div>
+</div>
+<script>
+$("#goBack").on('click',function(){
+window.location.href="../../index.html"
+})
+$("#select").on('click',function(){
+    var Manifest_queryText=$.trim($("#Manifest_queryCode").val());
+    var Manifest_verificationText=$.trim($("#Manifest_verification_code").val());
+    var code=localStorage.getItem('code');
+    var reg = new RegExp("^[0-9]*$");
+    if(Manifest_queryText==''){
+        commonObj.alertMsg("报关单号不能为空!");
+        return false;
+
+    }   else if(!reg.test(Manifest_queryText)){
+        commonObj.alertMsg("报关单号只能为数字!");
+        return false;
+    }  else if(Manifest_verificationText==''){
+        commonObj.alertMsg('验证码不能为空！');
+        return false;
+    }
+    else if(code.toLowerCase()!=Manifest_verificationText.toLowerCase()){
+        commonObj.alertMsg('验证码错误！');
+        return false;
+    }
+    commonObj.openLoading();
+    $.ajax({
+        url:its.configuration.serviceUrl+'tmanifestStatus/tmanifestStatusById?manifestId='+Manifest_queryText,
+        type:'get',
+        success:function(res){
+            commonObj.closeLoading();
+                $('#manifest_status').text(res.status);
+            var code = verfiCode.verify();
+            localStorage.setItem('code',code );
+            $('#Manifest_verification_code').val('');
+        },
+        error:function(e){
+            commonObj.closeLoading();
+            commonObj.alertMsg('网络错误！');
+        }
+    })
+})
+    </script>
+</body>
+
+</html>

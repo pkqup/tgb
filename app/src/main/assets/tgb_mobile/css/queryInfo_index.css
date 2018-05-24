@@ -1,0 +1,91 @@
+.index_all .index_first{
+    width:100%;
+    height:126px;
+    text-align:center;
+}
+.index_all .index_first_div img{
+    margin-bottom:10px;
+}
+.index_all .index_first .index_first_div{
+    float:left;
+    width:33%;
+    margin-top: 25px;
+}
+
+.index_all .index_second{
+    width:100%;
+    height:126px;
+    text-align:center;
+
+}
+.index_all .index_second_div img{
+    margin-bottom:10px;
+    margin-top:20px;
+}
+.index_all .index_second .index_second_div{
+    float:left;
+    width:33%;
+    margin-top: 25px;
+
+}
+.index_all .index_three_div img{
+    margin-bottom:10px;
+    margin-top:20px;
+}
+.index_all .index_three{
+    width:100%;
+    height:33%;
+    margin-top:20%;
+}
+.index_all .index_three .index_three_div{
+    float:left;
+    width:33%;
+    height:130px;
+}
+/*政策消息*/
+.policy_index_all{
+    width:100%;
+    text-align:center;
+}
+
+.policy_index_all .policy_index_first{
+    width:100%;
+    height:100%;
+    height:126px;
+    margin-top: 25px;
+}
+.policy_index_all .policy_index_first_div img{
+    margin-bottom:10px;
+}
+.policy_index_all .policy_index_first  .policy_index_first_div{
+    float:left;
+    width:33%;
+}
+ /*账户管理*/
+.accoutManager_index_all{
+    width:100%;
+    text-align:center;
+}
+
+.accoutManager_index_all  .accoutManager_index_first{
+    width:100%;
+    height:126px;
+    margin-top:25px;
+}
+.accoutManager_index_all .accoutManager_index_first_div img{
+    margin-bottom:10px;
+}
+.accoutManager_index_all .accoutManager_index_first .accoutManager_index_first_div{
+    float:left;
+    width:33%;
+}
+/*系统设置*/
+.system_setting_all{
+    width:100%;
+   height:126px;
+    padding: 15px 15px;
+   line-height:23px;
+}
+.system_setting_all p{
+    text-indent: 2em;
+}

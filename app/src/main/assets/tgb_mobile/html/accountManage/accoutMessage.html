@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360" user-scalable="no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="stylesheet" href="../../css/common.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/queryInfo_index.css" type="text/css"/>
+    <script type="text/javascript" src="../../common/libs/jquery.min.js"></script>
+    <title>账户信息</title>
+</head>
+<style>
+    .accout_money{
+        margin:10px auto;
+        text-align:center;
+        position: relative;
+    }
+    .recharge{
+        width: 60px;height: 22px;line-height: 22px;
+        background: royalblue;
+        text-align: center;
+        border-radius: 6px;
+        position: absolute;top:0;right: 0;
+    }
+    .acountMsgBox{
+        margin-top: 16px;
+        background: lightgray;
+        padding: 16px;
+    }
+    .balanceText{
+        display: block;margin: auto;
+    }
+    .balanceNum{
+        height: 18px;line-height: 18px;
+        text-align: center;
+        margin-top: 8px;
+    }
+</style>
+<body>
+    <div class="acountMsgBox">
+        <div class="accout_money">
+            <span class="balanceText">账户余额（元）</span>
+            <div class="recharge">充值</div>
+            <div class="balanceNum">3000</div>
+        </div>
+        <div style="margin-top: 8px;">
+            <div><p>实际金额:</p><p></p></div>
+            <div style="margin-top: 8px;"><p>赠送金额:</p><p></p></div>
+        </div>
+    </div>
+</body>
+</html>

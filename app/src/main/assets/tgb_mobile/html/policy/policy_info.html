@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360" user-scalable="no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="stylesheet" href="../../css/common.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/queryInfo_index.css" type="text/css"/>
+    <script type="text/javascript" src="../../common/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/its.configuration.js"></script>
+    <title>政策内容</title>
+    <style>
+        .policy_info_index{
+            overflow: auto;
+            position: fixed;
+            width: 100%;
+            height:calc(100% - 80px);
+            top: 63px;
+            text-indent:2em;
+            font-size:14px;
+            line-height:23px;
+        }
+        .policy_info_content{
+            padding:15px 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="common">
+<div class="header">
+    <img id="goBack" class="goBack" src="../../img/goBack.png"/>
+    <b id="tittle" class="tittle"></b>
+</div>
+<div  class="policy_info_index ">
+    <p  class="policy_info_title " id=" policy_info_title"></p>
+    <p class="policy_info_time" id="policy_info_time"></p>
+    <p class="policy_info_content" id="policy_info_content"></p>
+</div>
+</div>
+<script>
+    $(document).ready(function() {
+        var  policycontent=localStorage.getItem('policycontent');
+        var  policytime=localStorage.getItem('policytime');
+        var  policytitle=localStorage.getItem('policytitle');
+
+        $('#policy_info_content').html(policycontent);
+        $('#tittle').text(policytitle);
+        $('#policy_info_time').html(policytime);
+
+        $("#goBack").on('click', function () {
+            window.location.href = "policy_enquiry.html"
+        });
+    });
+
+</script>
+</body>
+</html>

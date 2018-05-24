@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360" user-scalable="no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <title>商品归类管理查询</title>
+    <link rel="stylesheet" href="../../css/mui.min.css">
+    <link rel="stylesheet" href="../../css/common.css" type="text/css"/>
+    <!-- Demo styles -->
+    <style>
+        html, body {
+            position: relative;
+            height: 100%;
+        }
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color:#000;
+            margin: 0;
+            padding: 0;
+        }
+        .same{text-align: center;margin-top:15px;}
+        .same input{
+            padding-left:8px;
+        }
+        .queryBar{
+            width: 100%;height: 235px;
+            position: fixed;top:40px;z-index: 999;
+            border-bottom: 1px solid lightgray;
+            text-align: center;
+            background: white;
+        }
+        .goodsRank_name{
+            margin: 8px 0 0 12px;
+            color: rgb(148,148,148);
+            font-size: 12px;
+            height: 20px;
+            line-height: 20px;
+        }
+        .goodsCodeBar{
+            margin: 8px 0 0 12px;
+            height: 20px;
+            line-height: 20px;
+        }
+        input{
+            outline: none !important;
+            border: 1px solid #D9D9D9 !important;
+            height: 42px !important;
+            width: 90% !important;
+            border-radius: 30px !important;
+            padding: 0 8px !important;
+            margin-bottom: 0 !important;
+            font-size: 14px !important;
+        }
+        .goodsRank_name{
+            margin: 8px 0 0 12px;
+            color: rgb(148,148,148);
+            font-size: 12px;
+            height: 20px;
+            line-height: 20px;
+        }
+        .goodsCodeBar{
+            margin: 8px 0 0 12px;
+            height: 20px;
+            line-height: 20px;
+        }
+        #pullrefresh  .mui-pull-bottom-pocket, .mui-pull-top-pocket{
+            height:60px;
+        }
+        #pullrefresh   .mui-pull{
+            bottom:-4px;
+        }
+        .list{
+            margin-top:40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img id="goBack" class="goBack" src="../../img/goBack.png"/>
+        <b id="tittle" class="tittle">商品归类查询</b>
+    </div>
+    <div class="queryBar">
+        <div class="same">
+            <input type="text" id="goodsCode" placeholder="请输入商品编码" value="" />
+        </div>
+        <div class="same">
+            <input type="text" id="goodsName" placeholder="请输入商品名称"  value=""/>
+        </div>
+        <div class="same  clearfix" >
+            <input  type="text"  placeholder="请输入验证码"id="goods_verification_code" class="verification_code" style=" width: 65% !important;
+           float:left; vertical-align: top; margin-left:5% "/>
+            <div  id="changeImg" class="verifyCodeDiv"  style="top:130px">
+                <canvas class="show-captcha" id="canvas" width="90" height="40"></canvas>
+            </div>
+        </div>
+        <div id="submit" class="queryBn">查询</div>
+    </div>
+    <!--下拉刷新容器-->
+    <div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="margin-top: 245px;height: calc(100% - 176px)">
+        <div class="mui-scroll">
+            <!--数据列表-->
+            <ul class="mui-table-view mui-table-view-chevron list">
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="../../common/libs/jquery.min.js"></script>
+    <script src="../../common/libs/mui.min.js"></script>
+    <script src="../../common/commonFunc.js"></script>
+    <script type="text/javascript" src="../../common/verifyCode.js"></script>
+    <script type="text/javascript" src="../../js/its.configuration.js"></script>
+    <!-- Initialize Swiper -->
+    <script src="../../js/queryInfo/goodsRank.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#goBack").on('click', function () {
+                window.location.href = "../../index.html"
+            });
+        });
+    </script>
+</body>
+</html>

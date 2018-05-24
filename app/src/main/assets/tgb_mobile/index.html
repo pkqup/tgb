@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360" user-scalable="no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="stylesheet" href="css/common.css" type="text/css"/>
+    <link rel="stylesheet" href="css/queryInfo_index.css" type="text/css"/>
+    <link rel="stylesheet" href="css/mui.min.css" type="text/css"/>
+    <script type="text/javascript" src="common/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="js/queryInfo/queryInfo_index.js"></script>
+    <script type="text/javascript" src="js/acountManage/accountManage.js"></script>
+    <script type="text/javascript" src="js/policy/policy_index.js"></script>
+    <script type="text/javascript" src="common/libs/mui.min.js"></script>
+    <script type="text/javascript" src="js/its.configuration.js"></script>
+    <title>首页</title>
+    <style>
+        .top_information_search{
+            font-size:24px;
+            color:#333333;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="index_layout">
+    <div class="common_top">
+        <div class="top_information_search">
+            信息查询
+        </div>
+    </div>
+
+        <!--<div class="swiper-container" id="common_picture">-->
+                <!--<div class="swiper-wrapper"> &lt;!&ndash;四张轮播图&ndash;&gt;-->
+                    <!--<div class="swiper-slide">-->
+                    <!--<img src="img/banner_four.png" style="height:175px;width:100%">-->
+                    <!--</div>-->
+                    <!--<div class="swiper-slide">-->
+                    <!--<img src="img/banner_one.png" style="height:175px;width:375px">-->
+                    <!--</div>-->
+
+                    <!--<div class="swiper-slide">-->
+                    <!--<img src="img/banner_two.png" style="height:175px;width:375px">-->
+                    <!--</div>-->
+                    <!--<div class="swiper-slide">-->
+                        <!--<img src="img/banner_three.png" style="height:175px;width:375px">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; Add Pagination &ndash;&gt;-->
+                <!--<div class="swiper-pagination"></div>-->
+
+                    <!--</div>-->
+    <div id="slider" class="mui-slider" style="top:64px;">
+        <div class="mui-slider-group mui-slider-loop">
+            <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <a href="#">
+                    <img src="img/banner_three.png" style="height:175px;">
+                </a>
+            </div>
+            <!-- 第一张 -->
+            <div class="mui-slider-item">
+                <a href="#">
+                    <img src="img/banner_four.png" style="height:175px;">
+                </a>
+            </div>
+            <!-- 第二张 -->
+            <div class="mui-slider-item">
+                <a href="#">
+                    <img src="img/banner_one.png" style="height:175px;">
+                </a>
+            </div>
+            <!-- 第三张 -->
+            <div class="mui-slider-item">
+                <a href="#">
+                    <img src="img/banner_two.png" style="height:175px;">
+                </a>
+            </div>
+            <!-- 第四张 -->
+            <div class="mui-slider-item">
+                <a href="#">
+                    <img src="img/banner_three.png" style="height:175px;">
+                </a>
+            </div>
+            <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <a href="#">
+                    <img src="img/banner_four.png" style="height:175px;width:100%">
+                </a>
+            </div>
+        </div>
+        <div class="mui-slider-indicator">
+            <div class="mui-indicator mui-active"></div>
+            <div class="mui-indicator"></div>
+            <div class="mui-indicator"></div>
+            <div class="mui-indicator"></div>
+        </div>
+    </div>
+
+    <div class="common_bottom">
+
+        <div  class="fl  space  message_searchevent">
+            <img src="img/normal_1.png" id="message"/>
+        </div>
+
+
+        <div class="fl space">
+            <img src="img/normal_2.png" id="policy"/>
+
+           </div>
+        <div class="fl  space"> <img src="img/normal_3.png" id="account"/>
+
+           </div>
+        <div class="fl space">
+            <img  src="img/normal_4.png" id="setting"/>
+    </div>
+    </div>
+    <div  class="menu_select">
+            <div class="index_all  menu_bar  ">
+             <div class="index_first">
+             <div class="index_first_div" onclick="setEntry()">
+                 <div><img src="img/Entry.png" id="Entry"/></div>
+                 <p>报关单状态查询</p>
+             </div>
+            <!--<div class="index_first_div"  onclick="setContainer()" style="display:none">-->
+                <!--<div><img src="img/Entry.png"/></div>-->
+                <!--<p>集装箱状态查询</p>-->
+            <!--</div>-->
+             <div class="index_first_div"  onclick="setManifest()">
+                <div><img src="img/Manifest.png"/></div>
+                <p>舱单状态查询</p>
+             </div>
+                 <div class="index_first_div"  onclick="setLogistics()">
+                     <div><img src="img/Logistices.png"/></div>
+                     <p>物流链查询</p>
+                 </div>
+        </div>
+            <div class="index_second">
+            <!--<div class="index_second_div"  onclick="setLogistics()">-->
+                <!--<div><img src="img/Logistices.png"/></div>-->
+                <!--<p>物流链查询</p>-->
+            <!--</div>-->
+            <div class="index_second_div"  onclick="setNewManifest()">
+                <div><img src="img/Express.png"/></div>
+                <p>快件状态查询</p>
+            </div>
+            <div class="index_second_div"  onclick="setMaillist()">
+                <div><img src="img/shop.png"/></div>
+                <p>商品归类查询</p>
+            </div>
+                <div class="index_second_div" onclick="setQrcode()">
+                    <div><img src="img/erweima.png"/></div>
+                    <p>二维码通关</p>
+                </div>
+        </div>
+            <div class="index_three">
+            <!--<div class="index_three_div" onclick="setQrcode()">-->
+                <!--<div><img src="img/erweima.png"/></div>-->
+                <!--<p>二维码通关</p>-->
+            <!--</div>-->
+        </div>
+        </div>
+            <div class="policy_index_all  menu_bar" style="display:none">
+            <div class="policy_index_first">
+                <div class="policy_index_first_div" id="policy_select" >
+                    <div><img src="img/customs_policy.png"/></div>
+                    <p>海关政策</p>
+                </div>
+                <div class="policy_index_first_div" id="message_select">
+                    <div><img src="img/customs_message.png"/></div>
+                    <p>海关消息</p>
+                </div>
+
+            </div>
+
+        </div>
+            <div class="accoutManager_index_all  menu_bar" style="display:none">
+                <div class="accoutManager_index_first">
+                    <div class="accoutManager_index_first_div" onclick="UserInfo()">
+                        <div><img src="img/userinformation.png"/></div>
+                        <p>用户信息</p>
+                    </div>
+                    <div class="accoutManager_index_first_div" onclick="Logout()">
+                        <div><img src="img/userinformation.png"/></div>
+                        <p>退出</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="system_setting_all menu_bar" style="display:none">
+                <p>兰州通关宝，是由兰州海关和深圳市航通智能技术有限公司推出的智能终端信息系统产品，
+                    旨在为了更好的满足海关外部信息系统用户对通关物流数据查询的需求，
+                    让用户能够摆脱桌面电脑应用的限制，
+                    为快捷办理通关物流手续提供有效的信息支持</p>
+                <p>欢迎您提出宝贵意见，我们将不断改进，不断完善！感谢您的支持！</p>
+                <p>热线电话：0755-86169186</p>
+                <p>技术支持：深圳市航通智能技术有限公司</p>
+        </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            /*底部的点击事件*/
+            $('.common_bottom').on('click','div',function(){
+                $(this).addClass("active").siblings().removeClass("active");
+                $(".menu_select .menu_bar").eq($(".common_bottom div").index(this)).show().siblings().hide();
+                var index= $(".common_bottom div").index(this);
+                var newIndex = index+1;
+                for(var i=1;i<$('.common_bottom div').find('img').length+1;i++){
+                    $('.common_bottom div').find('img').eq(i-1).attr('src','img/normal_'+i+'.png');
+                }
+                $(this).find('img').attr('src','img/active_'+newIndex+'.png');
+                if(newIndex==1){
+                    $('.top_information_search').text('信息查询');
+                }
+                else if(newIndex==2){
+                    $('.top_information_search').text('政策消息');
+                }
+                else if(newIndex==3){
+                    $('.top_information_search').text('账号信息');
+                }
+                else if(newIndex==4){
+                    $('.top_information_search').text('系统设置');
+                }
+                else{
+                    $('.top_information_search').text('信息查询');
+                }
+            });
+        /*自动轮播*/
+        mui.init({
+            swipeBack:true //启用右滑关闭功能
+        });
+        mui("#slider").slider({
+            interval: 2000
+        });
+    });
+
+</script>
+
+</body>
+</html>
