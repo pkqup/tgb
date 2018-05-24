@@ -25,6 +25,9 @@ public class HomeActivity extends BaseActivity {
 
     private long exitTime;
 
+    private static final String LOGIN_PATH = "file:///android_asset/tgb_mobile/login.html";
+    private static final String INDEX_PATH = "file:///android_asset/tgb_mobile/index.html";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +68,9 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
+        String url = webView.getUrl();
+        if (!url.equals(INDEX_PATH) && !url.equals(LOGIN_PATH) && keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
+            //如果是登陆页或者主页，则不允许goBack
             webView.goBack();
             return true;
         } else {

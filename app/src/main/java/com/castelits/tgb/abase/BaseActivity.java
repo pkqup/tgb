@@ -24,17 +24,15 @@ public class BaseActivity extends AppCompatActivity {
         TAG = getClass().getSimpleName();
     }
 
-    public void setStatusBar() {
-        StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.colorAccent),
-                StatusBarUtil.DEFAULT_STATUS_BAR_ALPHA);
-    }
-
-
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
         //注入要在setContentView()方法之后调用
         ButterKnife.bind(this);
-//        setStatusBar();
+    }
+
+    public void setStatusBar() {
+        StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.colorAccent),
+                StatusBarUtil.DEFAULT_STATUS_BAR_ALPHA);
     }
 }

@@ -64,7 +64,7 @@ $(document).ready(function() {
             },
             error:function(e){
                 commonObj.closeLoading();
-                commonObj.alertMsg(e);
+                commonObj.alertMsg('网络错误!');
             }
         });
         var countDownNum = 60;
@@ -115,7 +115,7 @@ $(document).ready(function() {
     });
     $('#password').change(function(){
         var passwordText = $.trim($('#password').val());
-        var ppattern = /^[a-zA-Z0-9_~!@#$%^&*]{5,19}$/;
+        var ppattern = /^[a-zA-Z0-9_~!@#$%^&*]{6,20}$/;
         if(!ppattern.test(passwordText)){
             commonObj.alertMsg("请输入6至20位的密码!");
             return false;
@@ -142,7 +142,7 @@ $(document).ready(function() {
             }
         }
         var passwordText = $.trim($('#password').val());
-        var phoneText = $.trim($('#userphone').val());
+        var phoneNum = $.trim($('#userphone').val());
         var usernameText = $.trim($('#username').val());
         var emailText = $.trim($('#emailphone').val());
         var nameText = $.trim($('#name').val());
@@ -154,11 +154,10 @@ $(document).ready(function() {
         var customCodeText = $.trim($('#ocean_code').val());
         var verCodeText = $.trim($('#checkcode').val());
         var passwordText2 = $.trim($('#password2').val());
-        var ppattern = /^[a-zA-Z0-9_~!@#$%^&*]{5,19}$/;
+        var ppattern = /^[a-zA-Z0-9_~!@#$%^&*]{6,20}$/;
         var mPattern =/(1[3-9]\d{9}$)/;
         var epattern =/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
         var ipattern = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-        var phoneNum = $.trim($('#userphone').val());
 
         if(!mPattern.test(phoneNum)){
             commonObj.alertMsg("电话号码格式不正确!")

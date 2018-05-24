@@ -89,6 +89,7 @@ function getFirstList(isDownFlash){
         return false;
     }
     else if(code.toLowerCase()!=goods_verification_codeText.toLowerCase()){
+        $('.verification_code').val("");
         commonObj.alertMsg('验证码错误！');
         return false;
     }
@@ -97,6 +98,7 @@ function getFirstList(isDownFlash){
     mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
     page = 1;
     var queryData = {"productCode":$.trim($('#goodsCode').val()),"productName":$.trim($('#goodsName').val()),"page":page,"pageSize":pageSize};
+    commonObj.openLoading();
     $.ajax({
         url:its.configuration.serviceUrl+"productcode/queryPage",
         data:JSON.stringify(queryData),
@@ -104,6 +106,7 @@ function getFirstList(isDownFlash){
         contentType:"application/json;charset=UTF-8",
         dataType:"json",
         success:function(res){
+            commonObj.closeLoading();
             $('.mui-table-view').empty();
             if(res.resultList&&res.resultList.length==0){
                 var code = verfiCode.verify();
@@ -123,6 +126,7 @@ function getFirstList(isDownFlash){
             if(isDownFlash)mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed var code = verfiCode.verify();
         },
         error:function(e){
+            commonObj.closeLoading();
             commonObj.alertMsg("网络错误!");
             if(isDownFlash)mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
         }

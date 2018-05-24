@@ -7,12 +7,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <link rel="stylesheet" href="css/common.css" type="text/css"/>
     <link rel="stylesheet" href="css/queryInfo_index.css" type="text/css"/>
-    <link rel="stylesheet" href="css/mui.min.css" type="text/css"/>
+    <link rel="stylesheet" href="css/swiper.min.css" type="text/css"/>
     <script type="text/javascript" src="common/libs/jquery.min.js"></script>
     <script type="text/javascript" src="js/queryInfo/queryInfo_index.js"></script>
     <script type="text/javascript" src="js/acountManage/accountManage.js"></script>
     <script type="text/javascript" src="js/policy/policy_index.js"></script>
-    <script type="text/javascript" src="common/libs/mui.min.js"></script>
+    <script type="text/javascript" src="common/libs/swiper.min.js"></script>
     <script type="text/javascript" src="js/its.configuration.js"></script>
     <title>首页</title>
     <style>
@@ -31,87 +31,77 @@
         </div>
     </div>
 
-        <!--<div class="swiper-container" id="common_picture">-->
-                <!--<div class="swiper-wrapper"> &lt;!&ndash;四张轮播图&ndash;&gt;-->
-                    <!--<div class="swiper-slide">-->
+        <div class="swiper-container" style="top:64px;">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="img/banner_four.png" style="height:175px;width: 100%;"></div>
+                <div class="swiper-slide"><img src="img/banner_one.png" style="height:175px;width: 100%;"></div>
+                <div class="swiper-slide"><img src="img/banner_two.png" style="height:175px;width: 100%;"></div>
+                <div class="swiper-slide"><img src="img/banner_three.png" style="height:175px;width: 100%;"></div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Arrows -->
+            <!--<div class="swiper-button-next"></div>-->
+            <!--<div class="swiper-button-prev"></div>-->
+        </div>
+    <!--<div id="slider" class="mui-slider" style="top:64px;">-->
+        <!--<div class="mui-slider-group mui-slider-loop">-->
+            <!--&lt;!&ndash; 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) &ndash;&gt;-->
+            <!--<div class="mui-slider-item mui-slider-item-duplicate">-->
+                <!--&lt;!&ndash; <a href="#"> &ndash;&gt;-->
+                    <!--<img src="img/banner_three.png" style="height:175px;">-->
+                <!--&lt;!&ndash; </a> &ndash;&gt;-->
+            <!--</div>-->
+            <!--&lt;!&ndash; 第一张 &ndash;&gt;-->
+            <!--<div class="mui-slider-item">-->
+                <!--&lt;!&ndash; <a href="#"> &ndash;&gt;-->
+                    <!--<img src="img/banner_four.png" style="height:175px;">-->
+                <!--&lt;!&ndash; </a> &ndash;&gt;-->
+            <!--</div>-->
+            <!--&lt;!&ndash; 第二张 &ndash;&gt;-->
+            <!--<div class="mui-slider-item">-->
+                <!--&lt;!&ndash; <a href="#"> &ndash;&gt;-->
+                    <!--<img src="img/banner_one.png" style="height:175px;">-->
+                <!--&lt;!&ndash; </a> &ndash;&gt;-->
+            <!--</div>-->
+            <!--&lt;!&ndash; 第三张 &ndash;&gt;-->
+            <!--<div class="mui-slider-item">-->
+                <!--&lt;!&ndash; <a href="#"> &ndash;&gt;-->
+                    <!--<img src="img/banner_two.png" style="height:175px;">-->
+                <!--&lt;!&ndash; </a> &ndash;&gt;-->
+            <!--</div>-->
+            <!--&lt;!&ndash; 第四张 &ndash;&gt;-->
+            <!--<div class="mui-slider-item">-->
+                <!--&lt;!&ndash; <a href="#"> &ndash;&gt;-->
+                    <!--<img src="img/banner_three.png" style="height:175px;">-->
+                <!--&lt;!&ndash; </a> &ndash;&gt;-->
+            <!--</div>-->
+            <!--&lt;!&ndash; 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) &ndash;&gt;-->
+            <!--<div class="mui-slider-item mui-slider-item-duplicate">-->
+                <!--&lt;!&ndash; <a href="#"> &ndash;&gt;-->
                     <!--<img src="img/banner_four.png" style="height:175px;width:100%">-->
-                    <!--</div>-->
-                    <!--<div class="swiper-slide">-->
-                    <!--<img src="img/banner_one.png" style="height:175px;width:375px">-->
-                    <!--</div>-->
-
-                    <!--<div class="swiper-slide">-->
-                    <!--<img src="img/banner_two.png" style="height:175px;width:375px">-->
-                    <!--</div>-->
-                    <!--<div class="swiper-slide">-->
-                        <!--<img src="img/banner_three.png" style="height:175px;width:375px">-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--&lt;!&ndash; Add Pagination &ndash;&gt;-->
-                <!--<div class="swiper-pagination"></div>-->
-
-                    <!--</div>-->
-    <div id="slider" class="mui-slider" style="top:64px;">
-        <div class="mui-slider-group mui-slider-loop">
-            <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-            <div class="mui-slider-item mui-slider-item-duplicate">
-                <a href="#">
-                    <img src="img/banner_three.png" style="height:175px;">
-                </a>
-            </div>
-            <!-- 第一张 -->
-            <div class="mui-slider-item">
-                <a href="#">
-                    <img src="img/banner_four.png" style="height:175px;">
-                </a>
-            </div>
-            <!-- 第二张 -->
-            <div class="mui-slider-item">
-                <a href="#">
-                    <img src="img/banner_one.png" style="height:175px;">
-                </a>
-            </div>
-            <!-- 第三张 -->
-            <div class="mui-slider-item">
-                <a href="#">
-                    <img src="img/banner_two.png" style="height:175px;">
-                </a>
-            </div>
-            <!-- 第四张 -->
-            <div class="mui-slider-item">
-                <a href="#">
-                    <img src="img/banner_three.png" style="height:175px;">
-                </a>
-            </div>
-            <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-            <div class="mui-slider-item mui-slider-item-duplicate">
-                <a href="#">
-                    <img src="img/banner_four.png" style="height:175px;width:100%">
-                </a>
-            </div>
-        </div>
-        <div class="mui-slider-indicator">
-            <div class="mui-indicator mui-active"></div>
-            <div class="mui-indicator"></div>
-            <div class="mui-indicator"></div>
-            <div class="mui-indicator"></div>
-        </div>
-    </div>
+                <!--&lt;!&ndash; </a> &ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="mui-slider-indicator">-->
+            <!--<div class="mui-indicator mui-active"></div>-->
+            <!--<div class="mui-indicator"></div>-->
+            <!--<div class="mui-indicator"></div>-->
+            <!--<div class="mui-indicator"></div>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <div class="common_bottom">
-
         <div  class="fl  space  message_searchevent">
             <img src="img/normal_1.png" id="message"/>
         </div>
-
-
         <div class="fl space">
             <img src="img/normal_2.png" id="policy"/>
 
            </div>
-        <div class="fl  space"> <img src="img/normal_3.png" id="account"/>
-
-           </div>
+        <div class="fl  space">
+            <img src="img/normal_3.png" id="account"/>
+            </div>
         <div class="fl space">
             <img  src="img/normal_4.png" id="setting"/>
     </div>
@@ -227,16 +217,33 @@
                     $('.top_information_search').text('信息查询');
                 }
             });
-        /*自动轮播*/
-        mui.init({
-            swipeBack:true //启用右滑关闭功能
+            /*自动轮播*/
+//            mui.init({
+//                swipeBack:true //启用右滑关闭功能
+//            });
+//            mui("#slider").slider({
+//                interval: 2000
+//            });
+            var swiper = new Swiper('.swiper-container', {
+                loop: true,
+                spaceBetween: 30,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
         });
-        mui("#slider").slider({
-            interval: 2000
-        });
-    });
 
-</script>
+    </script>
 
 </body>
 </html>

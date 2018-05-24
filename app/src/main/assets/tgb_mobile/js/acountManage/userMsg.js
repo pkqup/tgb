@@ -80,7 +80,7 @@ $(document).ready(function() {
     //});
     $('#userphone').change(function () {
         var phoneNum = $.trim($('#userphone').val());
-        var mPattern = /^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\d{8}$/;
+        var mPattern =/(1[3-9]\d{9}$)/;
         if(!mPattern.test(phoneNum)){
             commonObj.alertMsg("电话号码格式不正确!")
             return false;
@@ -146,7 +146,7 @@ $(document).ready(function() {
             },
             error:function(e){
                 commonObj.closeLoading();
-                commonObj.alertMsg(e);
+                commonObj.alertMsg('网络错误!');
             }
         });
         var countDownNum = 60;
@@ -174,6 +174,12 @@ $(document).ready(function() {
             }
         }
         if(userType==5){
+            var mPattern =/(1[3-9]\d{9}$)/;
+            var phoneNum = $.trim($('#userphone').val());
+            if(!mPattern.test(phoneNum)){
+                commonObj.alertMsg("电话号码格式不正确!")
+                return false;
+            }
             var userData = {"phone":$.trim($('#userphone').val()),"verCode":$.trim($('#checkcode').val())};
             commonObj.openLoading();
             $.ajax({
@@ -185,6 +191,8 @@ $(document).ready(function() {
                 success:function(res){
                     commonObj.closeLoading();
                     if(res.success){
+                        var forgetPhoneNo = $.trim($('#userphone').val());
+                        localStorage.setItem('forgetPhoneNo',forgetPhoneNo);//存储找回密码用户的手机号
                         localStorage.setItem('userType',6);
                         setTimeout(function(){
                             location.reload();
@@ -195,12 +203,23 @@ $(document).ready(function() {
                 },
                 error:function(e){
                     commonObj.closeLoading();
-                    commonObj.alertMsg(e);
+                    commonObj.alertMsg('网络错误!');
                 }
             });
         }else if(userType==6){
+            var passwordText = $.trim($('#password').val());
+            var passwordText2 = $.trim($('#password2').val());
+            if(!ppattern.test(passwordText)){
+                commonObj.alertMsg("请输入6至20位的密码!");
+                return false;
+            }
+            if(passwordText!=passwordText2){
+                commonObj.alertMsg("两次输入的密码不一致!");
+                return false;
+            }
+            var forgetPhoneNo = localStorage.getItem('forgetPhoneNo');
+            var userData = {"pwd":$.trim($('#password').val()),"phone":forgetPhoneNo};//userInfo.phone
             commonObj.openLoading();
-            var userData = {"pwd":$.trim($('#password').val()),"phone":$.trim($('#userphone').val())};//userInfo.phone
             $.ajax({
                 url:its.configuration.serviceUrl + "/user/userUpdatePwd",
                 data:JSON.stringify(userData),
@@ -214,7 +233,7 @@ $(document).ready(function() {
                 },
                 error:function(e){
                     commonObj.closeLoading();
-                    commonObj.alertMsg(e);
+                    commonObj.alertMsg('网络错误!');
                 }
             });
         }else{
@@ -256,25 +275,6 @@ $(document).ready(function() {
     });
 });
 
-function resetform(){
+function resetform() {
     $("input").val('');
 }
-
-
-    // var registet ={
-    //     checkPassword :function(){
-    //         var pass1=$("#password").val();
-    //         var pass2=$("$password2").val();
-    //         if(pass1!=pass2){
-    //             this.setCustomValidity('两次密码不一致');
-    //         }
-    //         else{
-    //             this.setCustomValidity('');
-    //         }
-    //     },
-    //     checkform:function () {
-    //         alert(111)
-    //     }
-    // };
-    // return registet;
-// })(window)

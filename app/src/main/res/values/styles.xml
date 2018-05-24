@@ -12,4 +12,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
+    <style name="Tgb.Theme.Flash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowBackground">@mipmap/splash</item>
+    </style>
 </resources>

@@ -177,10 +177,10 @@ button{
     z-index:999;
 }
 .common_bottom .space{
-    width:19%;
-    margin-left:20px;
+    width:25%;
     margin-top:4px;
     vertical-align: middle;
+    text-align: center;
 }
 .common_top .image_top{
     background-image: url("../img/tongguanbao.jpg");

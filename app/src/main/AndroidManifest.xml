@@ -128,14 +128,20 @@
             android:value="${TGB_CHANNEL}" />
 
         <activity
-            android:name=".main.HomeActivity"
-            android:screenOrientation="portrait">
+            android:name=".main.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Tgb.Theme.Flash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".main.HomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
     </application>
 
 </manifest>

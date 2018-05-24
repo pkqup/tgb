@@ -72,6 +72,7 @@
                 return false;
             }
         else if(code.toLowerCase()!=Declaration_verificationText.toLowerCase()){
+                $('.verification_code').val("");
                 commonObj.alertMsg('验证码错误！');
                 return false;
             }
