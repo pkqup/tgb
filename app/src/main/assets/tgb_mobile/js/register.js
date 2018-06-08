@@ -115,7 +115,7 @@ $(document).ready(function() {
     });
     $('#password').change(function(){
         var passwordText = $.trim($('#password').val());
-        var ppattern = /^[a-zA-Z0-9_~!@#$%^&*]{6,20}$/;
+        var ppattern = /^[a-zA-Z0-9_~!@#$%^&*]{6,19}$/;
         if(!ppattern.test(passwordText)){
             commonObj.alertMsg("请输入6至20位的密码!");
             return false;
@@ -154,7 +154,7 @@ $(document).ready(function() {
         var customCodeText = $.trim($('#ocean_code').val());
         var verCodeText = $.trim($('#checkcode').val());
         var passwordText2 = $.trim($('#password2').val());
-        var ppattern = /^[a-zA-Z0-9_~!@#$%^&*]{6,20}$/;
+        var ppattern = /^[a-zA-Z0-9_~!@#$%^&*]{6,19}$/;
         var mPattern =/(1[3-9]\d{9}$)/;
         var epattern =/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
         var ipattern = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
@@ -162,13 +162,16 @@ $(document).ready(function() {
         if(!mPattern.test(phoneNum)){
             commonObj.alertMsg("电话号码格式不正确!")
             return false;
-         }else if(!ppattern.test(passwordText)){
+        }
+        if(!ppattern.test(passwordText)){
             commonObj.alertMsg("请输入6至20位的密码!");
             return false;
-        }else if(passwordText!=passwordText2){
+        }
+        if(passwordText!=passwordText2){
             commonObj.alertMsg("两次输入的密码不一致!");
             return false;
-        } else if(!epattern.test(emailText)){
+        }
+        if(!epattern.test(emailText)){
             commonObj.alertMsg("邮箱格式不正确!")
             return false;
         }
@@ -179,7 +182,7 @@ $(document).ready(function() {
             }
         }
 
-        var userData = {"userName":usernameText,"pwd":passwordText,"name":nameText,"phone":phoneText,
+        var userData = {"userName":usernameText,"pwd":passwordText,"name":nameText,"phone":phoneNum,
             "cardId":checkIdText,"email":emailText,"companyName":companyNameText,
             "companyCode":allText,"custCode":customCodeText,"cardNo1":carNo1Text,
             "carNo2Text":carNo2Text,"status":'',"type":userType,"verCode":verCodeText};

@@ -10,7 +10,7 @@ $(document).ready(function() {
         $('#carNo1').val(userInfo.cardNo1);
         $('#carNo2').val(userInfo.cardNo2);
         $('#all').val(userInfo.companyCode);
-        $('#ocean_code').val(userInfo.custCode);
+        $('#customsCode').val(userInfo.custCode);
     }
     if(localStorage.getItem('userType')){
         userType = localStorage.getItem('userType');
@@ -58,7 +58,7 @@ $(document).ready(function() {
         $('#tittle').text("找回密码");
         $('.contentBox .same #userphone').parent().css('display', 'block');
         $('#checkCodeBar').show();
-        $('#goBack').off('click')
+        $('#goBack').off('click');
         $('#goBack').on('click',function(){
             location.href = "../../login.html";
         });
@@ -198,7 +198,7 @@ $(document).ready(function() {
                             location.reload();
                         })
                     }else{
-                        commonObj.alertMsg('请重获取验证码!');
+                        commonObj.alertMsg(res.object);
                     }
                 },
                 error:function(e){
@@ -209,6 +209,7 @@ $(document).ready(function() {
         }else if(userType==6){
             var passwordText = $.trim($('#password').val());
             var passwordText2 = $.trim($('#password2').val());
+            var ppattern = /^[a-zA-Z0-9_~!@#$%^&*]{6,19}$/;
             if(!ppattern.test(passwordText)){
                 commonObj.alertMsg("请输入6至20位的密码!");
                 return false;
@@ -247,7 +248,7 @@ $(document).ready(function() {
             var carNo1Text = $.trim($('#carNo1').val());
             var carNo2Text = $.trim($('#carNo2').val());
             var allText = $.trim($('#all').val());
-            var customCodeText = $.trim($('#ocean_code').val());
+            var customCodeText = $.trim($('#customsCode').val());
             var verCodeText = $.trim($('#checkcode').val());
             var tuser = {"userName":usernameText,"pwd":passwordText,"name":nameText,"phone":phoneText,
                 "cardId":checkIdText,"email":emailText,"companyName":companyNameText,
@@ -263,8 +264,16 @@ $(document).ready(function() {
                 dataType:"json",
                 success:function(res){
                     commonObj.closeLoading();
-                    console.log(res);
-                    location.href = "../../login.html";
+                    if(res.success){
+                        commonObj.alertMsg('修改成功！');
+                        setTimeout(function(){
+                            location.href = "../../login.html";
+                        },800)
+                    }
+                    else{
+                        commonObj.alertMsg(res.object);
+                    }
+
                 },
                 error:function(e){
                     commonObj.closeLoading();

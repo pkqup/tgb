@@ -33,11 +33,11 @@
                 </div>
                 <div  class="register_same">
                        <img src="img/normal_pass.png" class="regidter_pic_con"/>
-                       <input type="password" id="password" placeholder="密码（长度6-20)" name="password" pattern="^[a-zA-Z0-9]\w{5,19}$" required oninvalid="this.setCustomValidity('6~20字母数字或下划线');" oninput="setCustomValidity('')">
+                       <input type="password" id="password" placeholder="密码（长度6-20)" name="password" oninvalid="this.setCustomValidity('6~20字母数字或下划线');" >
                    </div>
                 <div  class="register_same">
                     <img src="img/normal_repass.png" class="regidter_pic_con"/>
-                       <input type="password" id="password2" placeholder="确认密码" name="password" required onchange="checkPassword()">
+                       <input type="password" id="password2" placeholder="确认密码" name="password">
                    </div>
                 <div  class="register_same">
                     <img src="img/normal_email.png" class="regidter_pic_con"/>
