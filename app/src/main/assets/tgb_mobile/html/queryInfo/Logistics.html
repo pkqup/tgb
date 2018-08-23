@@ -47,8 +47,7 @@
   </div>
     <div  id="Logistics_show" class="box_pos">
         <!--<img src="../../img/border_name.png" class="box_show"/>-->
-           <p  style="
-           text-align:center;padding-top:15px;padding-bottom:10px">物流信息：</p>
+           <p  style="text-align:center;padding-top:15px;padding-bottom:10px">物流信息：</p>
             <p id="logistics_info" class="logistics_info"></p>
 
     </div>
@@ -74,7 +73,6 @@
             return false;
         }
         else if(code.toLowerCase()!=logistics_verification_queryInfoText.toLowerCase()){
-            $('.verification_code').val("");
             commonObj.alertMsg('验证码错误！');
             return false;
         }
@@ -82,6 +80,9 @@
         $.ajax({
             url:its.configuration.serviceUrl+'/logisticsInfo/queryById?entryId='+logistics_entry_queryInfoText+'&'+'billNo='+ logistics_man_queryInfoText+'&'+'containerId='+ logistics_box_queryInfoText,
             type:'get',
+							  headers: {
+				authorization: "" + localStorage.getItem('token')
+			},
             success:function(res){
                 commonObj.closeLoading();
                 if(res.success){

@@ -74,10 +74,10 @@
                     <input type="text" id="username" placeholder="用户名" name="username" required>
                 </div>
                 <div class="same">
-                    <input type="password" id="password" placeholder="密码（长度6-20）" name="password" >
+                    <input type="password" id="password" placeholder="密码（长度6-20）" name="password" pattern="^[a-zA-Z0-9]\w{5,19}$" required oninvalid="this.setCustomValidity('6~20字母数字或下划线');" oninput="setCustomValidity('')" >
                 </div>
                 <div class="same">
-                    <input type="password" id="password2" placeholder="确认密码" name="password"  >
+                    <input type="password" id="password2" placeholder="确认密码" name="password" required >
                 </div>
                 <div class="same">
                     <input type="text" id="emailphone" placeholder="邮箱号码" name="emailphone"  pattern="^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$" required oninvalid="this.setCustomValidity('请输入正确的邮箱格式');" oninput="setCustomValidity('')">

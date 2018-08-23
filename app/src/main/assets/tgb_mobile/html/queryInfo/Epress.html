@@ -67,7 +67,6 @@
             return false;
         }
         else if(code.toLowerCase()!=Express_verificationText.toLowerCase()){
-            $('.verification_code').val("");
             commonObj.alertMsg('验证码错误！');
             return false;
         }
@@ -75,6 +74,9 @@
         $.ajax({
             url:its.configuration.serviceUrl+'texpressStatus/queryById?billNo='+Express_queryText,
             type:'get',
+			headers: {
+				authorization: "" + localStorage.getItem('token')
+			},
             success: function (res) {
                 commonObj.closeLoading();
                     $('#express_status').text(res.status);

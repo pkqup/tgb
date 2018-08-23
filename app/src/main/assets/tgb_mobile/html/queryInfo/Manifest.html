@@ -68,7 +68,6 @@ $("#select").on('click',function(){
         return false;
     }
     else if(code.toLowerCase()!=Manifest_verificationText.toLowerCase()){
-        $('.verification_code').val("");
         commonObj.alertMsg('验证码错误！');
         return false;
     }
@@ -76,6 +75,9 @@ $("#select").on('click',function(){
     $.ajax({
         url:its.configuration.serviceUrl+'tmanifestStatus/tmanifestStatusById?manifestId='+Manifest_queryText,
         type:'get',
+	     headers: {
+				authorization: "" + localStorage.getItem('token')
+			},
         success:function(res){
             commonObj.closeLoading();
                 $('#manifest_status').text(res.status);

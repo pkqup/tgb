@@ -5,10 +5,10 @@ android {
     defaultConfig {
         applicationId "com.castelits.tgb"
         minSdkVersion 19
-        targetSdkVersion 21
+        targetSdkVersion 26
         multiDexEnabled true
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         flavorDimensions "versionCode"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -101,8 +101,6 @@ android {
             buildConfigField "String", "CHANNEL", "\"9.1\""
         }
     }
-
-
 
 
     packagingOptions {

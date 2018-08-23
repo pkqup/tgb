@@ -29,7 +29,7 @@
                 <img  src="img/normal_line.png" class="normal_line_con"/>
             </div>
             <div class="same passwordBar login_common ">
-                <input type="password" id="password" style="width: 90%;height:42px;padding-left:58px;margin-left: 5%;"  placeholder="请输入密码" maxlength="20"/>
+                <input type="password" id="password" style="width: 90%;height:42px;padding-left:58px;margin-left: 5%;"  placeholder="请输入密码"/>
                 <img src="img/normal_pass.png" class="small_pic  small_pic_password"/>
                 <img  src="img/normal_line.png" class="normal_line_con"/>
             </div>
@@ -65,7 +65,7 @@
         });
         $('#phone').change(function () {
             var phoneNum = $.trim($(this).val());
-            var mPattern = /(1[3-9]\d{9}$)/;
+            var mPattern = /^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\d{8}$/;
             if(phoneNum!=''){
                 if(!mPattern.test(phoneNum)){
                     commonObj.alertMsg("电话号码格式不正确!")
@@ -82,13 +82,6 @@
                commonObj.alertMsg("手机号码不能为空!");
                return false;
            }
-            var mPattern = /(1[3-9]\d{9}$)/;
-            if(phoneText!=''){
-                if(!mPattern.test(phoneText)){
-                    commonObj.alertMsg("电话号码格式不正确!")
-                    return false;
-                };
-            }
            if(passwordText==''){
                commonObj.alertMsg("密码不能为空!");
                return false;
@@ -98,14 +91,13 @@
                return false;
            }
            else if(code.toLowerCase()!=login_verificationText.toLowerCase()){
-               $('.verification_code').val("");
                commonObj.alertMsg('验证码错误！');
                return false;
            }
             commonObj.openLoading();
             var userData = {"phone":phoneText,"password":passwordText};
             $.ajax({
-                url:its.configuration.serviceUrl + "/user/theLogin",
+                url:its.configuration.serviceUrl + "user/theLogin",
                 data:userData,
                 type:"post",
                 success:function(res){
@@ -120,6 +112,7 @@
                          //存储到loaclStage
                         storage["loginphone"] = $("#phone").val();
                         storage["password"] = $("#password").val();
+						storage["token"] = res.message.type;
                         location.href = "index.html";
                     }else{
                         commonObj.alertMsg(res.object);

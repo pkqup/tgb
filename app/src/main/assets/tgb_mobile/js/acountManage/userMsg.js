@@ -10,7 +10,7 @@ $(document).ready(function() {
         $('#carNo1').val(userInfo.cardNo1);
         $('#carNo2').val(userInfo.cardNo2);
         $('#all').val(userInfo.companyCode);
-        $('#customsCode').val(userInfo.custCode);
+        $('#ocean_code').val(userInfo.custCode);
     }
     if(localStorage.getItem('userType')){
         userType = localStorage.getItem('userType');
@@ -58,7 +58,7 @@ $(document).ready(function() {
         $('#tittle').text("找回密码");
         $('.contentBox .same #userphone').parent().css('display', 'block');
         $('#checkCodeBar').show();
-        $('#goBack').off('click');
+        $('#goBack').off('click')
         $('#goBack').on('click',function(){
             location.href = "../../login.html";
         });
@@ -80,7 +80,7 @@ $(document).ready(function() {
     //});
     $('#userphone').change(function () {
         var phoneNum = $.trim($('#userphone').val());
-        var mPattern =/(1[3-9]\d{9}$)/;
+        var mPattern = /^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\d{8}$/;
         if(!mPattern.test(phoneNum)){
             commonObj.alertMsg("电话号码格式不正确!")
             return false;
@@ -136,6 +136,9 @@ $(document).ready(function() {
             url:its.configuration.serviceUrl + "/user/sendVertionCode?phone="+phoneNum,
             data:userData,
             type:"get",
+			headers: {
+				authorization: "" + localStorage.getItem('token')
+			},
             success:function(res){
                 commonObj.closeLoading();
                 if(res.success){
@@ -174,12 +177,6 @@ $(document).ready(function() {
             }
         }
         if(userType==5){
-            var mPattern =/(1[3-9]\d{9}$)/;
-            var phoneNum = $.trim($('#userphone').val());
-            if(!mPattern.test(phoneNum)){
-                commonObj.alertMsg("电话号码格式不正确!")
-                return false;
-            }
             var userData = {"phone":$.trim($('#userphone').val()),"verCode":$.trim($('#checkcode').val())};
             commonObj.openLoading();
             $.ajax({
@@ -188,6 +185,9 @@ $(document).ready(function() {
                 type:"post",
                 contentType:"application/json;charset=UTF-8",
                 dataType:"json",
+				headers: {
+					authorization: "" + localStorage.getItem('token')
+				},
                 success:function(res){
                     commonObj.closeLoading();
                     if(res.success){
@@ -198,7 +198,7 @@ $(document).ready(function() {
                             location.reload();
                         })
                     }else{
-                        commonObj.alertMsg(res.object);
+                        commonObj.alertMsg('请重获取验证码!');
                     }
                 },
                 error:function(e){
@@ -207,17 +207,6 @@ $(document).ready(function() {
                 }
             });
         }else if(userType==6){
-            var passwordText = $.trim($('#password').val());
-            var passwordText2 = $.trim($('#password2').val());
-            var ppattern = /^[a-zA-Z0-9_~!@#$%^&*]{6,19}$/;
-            if(!ppattern.test(passwordText)){
-                commonObj.alertMsg("请输入6至20位的密码!");
-                return false;
-            }
-            if(passwordText!=passwordText2){
-                commonObj.alertMsg("两次输入的密码不一致!");
-                return false;
-            }
             var forgetPhoneNo = localStorage.getItem('forgetPhoneNo');
             var userData = {"pwd":$.trim($('#password').val()),"phone":forgetPhoneNo};//userInfo.phone
             commonObj.openLoading();
@@ -227,6 +216,9 @@ $(document).ready(function() {
                 type:"post",
                 contentType:"application/json;charset=UTF-8",
                 dataType:"json",
+				headers: {
+				authorization: "" + localStorage.getItem('token')
+				},
                 success:function(res){
                     commonObj.closeLoading();
                     commonObj.alertMsg("密码修改成功!");
@@ -248,7 +240,7 @@ $(document).ready(function() {
             var carNo1Text = $.trim($('#carNo1').val());
             var carNo2Text = $.trim($('#carNo2').val());
             var allText = $.trim($('#all').val());
-            var customCodeText = $.trim($('#customsCode').val());
+            var customCodeText = $.trim($('#ocean_code').val());
             var verCodeText = $.trim($('#checkcode').val());
             var tuser = {"userName":usernameText,"pwd":passwordText,"name":nameText,"phone":phoneText,
                 "cardId":checkIdText,"email":emailText,"companyName":companyNameText,
@@ -262,18 +254,13 @@ $(document).ready(function() {
                 type:"post",
                 contentType:"application/json;charset=UTF-8",
                 dataType:"json",
+				headers: {
+				authorization: "" + localStorage.getItem('token')
+			    },
                 success:function(res){
                     commonObj.closeLoading();
-                    if(res.success){
-                        commonObj.alertMsg('修改成功！');
-                        setTimeout(function(){
-                            location.href = "../../login.html";
-                        },800)
-                    }
-                    else{
-                        commonObj.alertMsg(res.object);
-                    }
-
+                    console.log(res);
+                    location.href = "../../login.html";
                 },
                 error:function(e){
                     commonObj.closeLoading();

@@ -31,6 +31,9 @@ $(function(){
             data:JSON.stringify(queryData),
             type:"post",
             contentType:"application/json;charset=UTF-8",
+			    headers: {
+				authorization: "" + localStorage.getItem('token')
+			},
             dataType:"json",
             success:function(res){
                     if(res.resultList&&res.resultList.length>0){
@@ -72,6 +75,9 @@ $(function(){
             type:"post",
             contentType:"application/json;charset=UTF-8",
             dataType:"json",
+			    headers: {
+				authorization: "" + localStorage.getItem('token')
+			},
             success:function(res){
                 $('.list').empty();
                 if(res.resultList&&res.resultList.length==0){
@@ -106,6 +112,9 @@ $(function(){
         $.ajax({
             url:its.configuration.serviceUrl+"/tpolicy/querySingleById?id="+id,
             type:"get",
+			headers: {
+				authorization: "" + localStorage.getItem('token')
+			},
             success:function(res){
                 if(res){
                     if(!res.policyContent){

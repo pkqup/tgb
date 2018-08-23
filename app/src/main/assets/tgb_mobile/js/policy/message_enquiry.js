@@ -39,6 +39,9 @@ $(function(){
             type:"post",
             contentType:"application/json;charset=UTF-8",
             dataType:"json",
+			    headers: {
+				authorization: "" + localStorage.getItem('token')
+			},
             success:function(res){
                 if(res.resultList&&res.resultList.length>0){
                     for(var i=0;i<res.resultList.length;i++){
@@ -81,6 +84,9 @@ $(function(){
             type:"post",
             contentType:"application/json;charset=UTF-8",
             dataType:"json",
+			    headers: {
+				authorization: "" + localStorage.getItem('token')
+			},	
             success:function(res){
                 $('.list').empty();
                 if(res.resultList&&res.resultList.length==0){
@@ -115,6 +121,9 @@ $(function(){
         $.ajax({
             url: its.configuration.serviceUrl + "/tinfo/querySingleById?id=" + id,
             type: "get",
+			    headers: {
+				authorization: "" + localStorage.getItem('token')
+			},	
             success: function (res) {
                 if(res){
                     if(!res.infoContent){

@@ -40,6 +40,9 @@ $(function() {
             type: "post",
             contentType: "application/json;charset=UTF-8",
             dataType: "json",
+			headers: {
+				authorization: "" + localStorage.getItem('token')
+			},
             success: function (res) {
                 if(res.resultList&&res.resultList.length>0){
                     for (var i = 0; i < res.resultList.length; i++) {
@@ -90,6 +93,9 @@ $(function() {
             type: "post",
             contentType: "application/json;charset=UTF-8",
             dataType: "json",
+						headers: {
+				authorization: "" + localStorage.getItem('token')
+			},
             success:function(res){
                 commonObj.closeLoading();
                 $('.list').empty();

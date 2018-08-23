@@ -54,6 +54,9 @@ $(document).ready(function() {
         $.ajax({
             url:its.configuration.serviceUrl + "/user/sendVertionCode?phone="+phoneNum,
             type:"get",
+			headers: {
+				authorization: "" + localStorage.getItem('token')
+			},
             success:function(res){
                 commonObj.closeLoading();
                 if(res.success){
@@ -115,7 +118,7 @@ $(document).ready(function() {
     });
     $('#password').change(function(){
         var passwordText = $.trim($('#password').val());
-        var ppattern = /^[a-zA-Z0-9_~!@#$%^&*]{6,19}$/;
+        var ppattern = /^[a-zA-Z0-9_~!@#$%^&*]{5,19}$/;
         if(!ppattern.test(passwordText)){
             commonObj.alertMsg("请输入6至20位的密码!");
             return false;
@@ -142,7 +145,7 @@ $(document).ready(function() {
             }
         }
         var passwordText = $.trim($('#password').val());
-        var phoneNum = $.trim($('#userphone').val());
+        var phoneText = $.trim($('#userphone').val());
         var usernameText = $.trim($('#username').val());
         var emailText = $.trim($('#emailphone').val());
         var nameText = $.trim($('#name').val());
@@ -154,24 +157,22 @@ $(document).ready(function() {
         var customCodeText = $.trim($('#ocean_code').val());
         var verCodeText = $.trim($('#checkcode').val());
         var passwordText2 = $.trim($('#password2').val());
-        var ppattern = /^[a-zA-Z0-9_~!@#$%^&*]{6,19}$/;
+        var ppattern = /^[a-zA-Z0-9_~!@#$%^&*]{5,19}$/;
         var mPattern =/(1[3-9]\d{9}$)/;
         var epattern =/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
         var ipattern = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+        var phoneNum = $.trim($('#userphone').val());
 
         if(!mPattern.test(phoneNum)){
             commonObj.alertMsg("电话号码格式不正确!")
             return false;
-        }
-        if(!ppattern.test(passwordText)){
+         }else if(!ppattern.test(passwordText)){
             commonObj.alertMsg("请输入6至20位的密码!");
             return false;
-        }
-        if(passwordText!=passwordText2){
+        }else if(passwordText!=passwordText2){
             commonObj.alertMsg("两次输入的密码不一致!");
             return false;
-        }
-        if(!epattern.test(emailText)){
+        } else if(!epattern.test(emailText)){
             commonObj.alertMsg("邮箱格式不正确!")
             return false;
         }
@@ -182,7 +183,7 @@ $(document).ready(function() {
             }
         }
 
-        var userData = {"userName":usernameText,"pwd":passwordText,"name":nameText,"phone":phoneNum,
+        var userData = {"userName":usernameText,"pwd":passwordText,"name":nameText,"phone":phoneText,
             "cardId":checkIdText,"email":emailText,"companyName":companyNameText,
             "companyCode":allText,"custCode":customCodeText,"cardNo1":carNo1Text,
             "carNo2Text":carNo2Text,"status":'',"type":userType,"verCode":verCodeText};
@@ -193,6 +194,9 @@ $(document).ready(function() {
             type:"post",
             contentType:"application/json;charset=UTF-8",
             dataType:"json",
+			headers: {
+				authorization: "" + localStorage.getItem('token')
+			},
             success:function(res){
                 commonObj.closeLoading();
                 if(res.success){

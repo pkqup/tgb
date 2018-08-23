@@ -72,7 +72,6 @@
                 return false;
             }
         else if(code.toLowerCase()!=Declaration_verificationText.toLowerCase()){
-                $('.verification_code').val("");
                 commonObj.alertMsg('验证码错误！');
                 return false;
             }
@@ -82,6 +81,9 @@
             $.ajax({
                 url:its.configuration.serviceUrl+ 'tentryStatus/queryByEntryId?entryId='+Declaration_queryText,
                 type: 'get',
+				  headers: {
+				authorization: "" + localStorage.getItem('token')
+			},
                 //async:false,
                 success: function (res) {
                     commonObj.closeLoading();

@@ -34,6 +34,9 @@ function pullupRefresh() {
         type:"post",
         contentType:"application/json;charset=UTF-8",
         dataType:"json",
+		headers: {
+				authorization: "" + localStorage.getItem('token')
+		},
         success:function(res){
             if(res.resultList&&res.resultList.length>0){
                 for(var i=0;i<res.resultList.length;i++){
@@ -89,7 +92,6 @@ function getFirstList(isDownFlash){
         return false;
     }
     else if(code.toLowerCase()!=goods_verification_codeText.toLowerCase()){
-        $('.verification_code').val("");
         commonObj.alertMsg('验证码错误！');
         return false;
     }
@@ -105,6 +107,9 @@ function getFirstList(isDownFlash){
         type:"post",
         contentType:"application/json;charset=UTF-8",
         dataType:"json",
+		headers: {
+				authorization: "" + localStorage.getItem('token')
+		},
         success:function(res){
             commonObj.closeLoading();
             $('.mui-table-view').empty();
