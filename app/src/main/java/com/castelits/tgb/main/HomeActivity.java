@@ -60,9 +60,6 @@ public class HomeActivity extends BaseActivity {
             }
         });
         webView.getSettings().setJavaScriptEnabled(true);// 设置js可用
-//        webView.addJavascriptInterface(
-//                new JsUtils(this), "tgb");// 设置js调用接口
-
         webView.loadUrl("file:///android_asset/tgb_mobile/login.html");
     }
 
