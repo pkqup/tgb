@@ -1,5 +1,6 @@
 package com.castelits.tgb.main;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -28,6 +29,7 @@ public class HomeActivity extends BaseActivity {
     private static final String LOGIN_PATH = "file:///android_asset/tgb_mobile/login.html";
     private static final String INDEX_PATH = "file:///android_asset/tgb_mobile/index.html";
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
